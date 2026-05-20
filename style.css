@@ -1,0 +1,230 @@
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+h1, h2, p {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+p, a {
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #00adb5;
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #222831;
+    border-radius: 8px;
+}
+
+footer ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    justify-content: center;
+    gap: 35px;
+}
+
+/* 1. Base state for footer links */
+footer ul li a {
+    text-decoration: none;
+    color: #4facfe;               /* Miku dull turquoise 🌊 */
+    transition: color 0.3s ease; /* Makes the glow glide in smoothly */
+}
+
+/* 2. Hover state for footer links */
+footer ul li a:hover {
+    color: #00f2fe;               /* Bright neon Miku teal! */
+}
+
+header {
+    position: sticky;       /* Locks the entire header at the top 📌 */
+    top: 0;                 /* Sticks it exactly at the very edge */
+    z-index: 1000;          /* Keeps it layered on top of scrolling content */
+    background-color: #111111; /* Gives the whole bar a solid, dark canvas */
+    padding: 15px 30px;     /* Adds clean breathing room inside the bar 🧼 */
+}
+
+nav ul {
+    display: flex;          /* Aligns list items horizontally in a row 🗺️ */
+    list-style-type: none;  /* Strips away the default bullet points ❌ */
+    gap: 25px;              /* Creates even spacing between your links 📐 */
+    padding: 0;             /* Flushes out default browser list spacing 🧼 */
+    margin: 0;              /* Flushes out default browser list margins 🧼 */
+}
+
+nav ul li a {
+    text-decoration: none;  /* Removes the default browser underlines ✏️ */
+    color: #4facfe;         /* Your beautiful choice of bright turquoise! */
+    font-weight: 600;       /* Gives the links a professional thickness */
+    transition: color 0.3s ease; /* Smoothly transitions color changes */
+}
+
+/* Hover state: links glow brighter when cursor glides over them */
+nav ul li a:hover {
+    color: #00f2fe;         /* Shifts to an even more vibrant neon teal! */
+}
+
+/* Active state visual cue: styles the current page link */
+nav ul li a.active {
+    color: #ffffff;         /* Makes the active "Home" link bright white ⚪ */
+    border-bottom: 2px solid #00f2fe; /* Adds a sleek turquoise underline 📏 */
+    padding-bottom: 4px;    /* Spaces the underline nicely under the text 📐 */
+}
+
+main {
+    margin-top: auto;
+}
+
+section img {
+    max-width: 100%;      /* Prevents the image from bursting out of the card 📐 */
+    height: auto;         /* Keeps the image proportions perfectly balanced 🎨 */
+    border-radius: 6px;   /* Softens the corners to match your section style */
+    display: block;       /* Removes accidental bottom spacing from the browser 🧼 */
+    margin-top: 15px;     /* Adds a clean gap between the text and your artwork 📏 */
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px; /* Adds clean spacing between your artwork cards 🧼 */
+}
+
+/* --- Interactive Artwork Gallery Effects --- */
+
+/* The outer card container */
+.gallery-grid figure {
+    margin: 0;
+    padding: 0;
+}
+
+/* The wrapper that holds the image and floating text */
+.gallery-grid .image-container {
+    position: relative;        /* Crucial context for absolute positioning 🗺️ */
+    overflow: hidden;         /* Clips the zooming image so it doesn't spill out ✂️ */
+    border-radius: 8px;       /* Keeps the smooth corners unified */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth card animations */
+}
+
+/* Target the images inside our grid wrapper */
+.gallery-grid .image-container img {
+    margin-top: 0;            /* Removes old top margin to sit perfectly flat */
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease; /* Handles the image zoom timing ⏳ */
+}
+
+/* The Title Overlay Text State 🌌 */
+.gallery-grid figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 17, 17, 0.75); /* Dark cinematic tint overlay 🖤 */
+    backdrop-filter: blur(4px);         /* Sleek frosted glass effect 🔮 */
+    color: #00f2fe;                     /* Glowing neon text color ⚡ */
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;            /* Centers text horizontally 📐 */
+    align-items: center;                /* Centers text vertically 📐 */
+    text-align: center;
+    padding: 15px;
+    box-sizing: border-box;
+    opacity: 0;                         /* Hidden by default 🕵️‍♂️ */
+    transition: opacity 0.3s ease;      /* Fades in smoothly */
+}
+
+/* --- The Combined Hover Experience --- */
+
+/* 1. Lift and apply the bright Vocaloid neon glow background to the container */
+.gallery-grid .image-container:hover {
+    transform: translateY(-5px);        /* Glides the card upward slightly 🎈 */
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.7); /* Deep neon light projection 🌌 */
+}
+
+/* 2. Triggers the internal image zoom magnification */
+.gallery-grid .image-container:hover img {
+    transform: scale(1.08);             /* Zooms in by 8% cleanly 🔎 */
+}
+
+/* 3. Reveals the hidden artwork title text */
+.gallery-grid .image-container:hover figcaption {
+    opacity: 1;                         /* Fades fully into view! ✨ */
+}
+
+section input[type="text"], 
+section input[type="email"], 
+section textarea {
+    width: 100%;          /* Forces fields to span the full width of the card 📐 */
+    padding: 10px;        /* Adds comfortable breathing room inside the boxes 🧼 */
+    margin-top: 8px;      /* Creates a clean gap between the label and the input 📏 */
+    margin-bottom: 15px;  /* Spaces out the different form groups down the page 🎨 */
+    background-color: #1a1a1a; /* Matches the main deep background color 🖤 */
+    border: 1px solid #4facfe;   /* Gives a clean, dull Miku turquoise border line 🌊 */
+    border-radius: 4px;   /* Slightly softens the corners of the input boxes ✨ */
+    color: #ffffff;       /* Ensures your user's typed text is bright white ⚪ */
+    font-family: 'Rajdhani', sans-serif; /* Applies your futuristic font choice! 🎧 */
+}
+
+/* 1. Base state for the submit button 🎯 */
+section button[type="submit"] {
+    background-color: #4facfe;   /* Solid Miku turquoise background 🌊 */
+    color: #111111;              /* Dark text color so it is easy to read 🖤 */
+    border: none;                /* Removes the default ugly browser border ❌ */
+    padding: 12px 24px;          /* Adds clean padding to make the button click area larger 🧼 */
+    font-size: 16px;             /* Matches the font size of your other links 📏 */
+    font-weight: 700;            /* Makes the text bold and professional */
+    border-radius: 4px;          /* Softens the corners slightly ✨ */
+    cursor: pointer;             /* Changes the mouse cursor to a pointing hand 🖱️ */
+    font-family: 'Rajdhani', sans-serif; /* Keeps our futuristic font unified 🎧 */
+    transition: background-color 0.3s ease; /* Smoothly transitions the hover effect 🌊 */
+}
+
+/* 2. Hover state for the submit button ⚡ */
+section button[type="submit"]:hover {
+    background-color: #00f2fe;   /* Shifts to your extra bright neon teal on hover! 🌟 */
+}
+
+/* Styling the form labels for a clean interface ✏️ */
+section form label {
+    font-weight: 600;
+    color: #ffffff;
+    display: block;
+}
+
+/* Choice 3: Giving the message box a stable starting height 📏 */
+section textarea {
+    min-height: 120px;
+    resize: vertical; /* Prevents stretching the card horizontally 🛑 */
+}
+
+/* Choice 2: Customizing the placeholder text color 🌌 */
+section input::placeholder,
+section textarea::placeholder {
+    color: #4facfe;
+    opacity: 0.5; /* Makes the placeholder text softly transparent */
+}
+
+/* Choice 1: The Interactive Focus Glow State ⚡ */
+section input[type="text"]:focus, 
+section input[type="email"]:focus, 
+section textarea:focus {
+    outline: none;
+    border-color: #00f2fe; /* Shifts to extra bright Miku teal */
+    box-shadow: 0 0 8px rgba(0, 242, 254, 0.4); /* Adds a soft neon back-light glow */
+}
+
+/* Choice 4: The Button Click Animation 🧱 */
+section button[type="submit"]:active {
+    transform: scale(0.98); /* Slightly compresses the button when pressed */
+}
