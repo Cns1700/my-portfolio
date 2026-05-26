@@ -1,0 +1,325 @@
+/* ==========================================================================
+   🪐 GLOBAL THEME & BACKGROUND CANVAS
+   ========================================================================== */
+body {
+    background: radial-gradient(circle at 50% 50%, #0f0f1a 0%, #050508 100%);
+    color: #e2e8f0;
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+#space-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* 🔷 Background Floating Elements */
+.bg-shape {
+    position: absolute;
+    opacity: 0.12; 
+    pointer-events: none;
+    animation: floatHorizontal linear infinite;
+}
+
+/* 🧬 Miku Color Palette Variants */
+.bg-shape.turquoise {
+    background-color: #00f2fe;
+    filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6));
+}
+
+.bg-shape.red {
+    background-color: #ff3344;
+    filter: drop-shadow(0 0 8px rgba(255, 51, 68, 0.6));
+}
+
+.bg-shape.cyber-black {
+    background-color: #252538;
+    border: 1px solid #3a3a56;
+    filter: drop-shadow(0 0 5px rgba(58, 58, 86, 0.4));
+}
+
+/* 🟩 Background Geometry Shapes */
+.bg-shape.cyber-bar {
+    width: 80px;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.bg-shape.digital-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.bg-shape.hexagon {
+    width: 40px;
+    height: 23px;
+    position: absolute;
+    background-color: transparent;
+}
+
+.bg-shape.hexagon::before,
+.bg-shape.hexagon::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+}
+
+.bg-shape.hexagon.turquoise::before { border-bottom: 12px solid #00f2fe; top: -12px; }
+.bg-shape.hexagon.turquoise { background-color: #00f2fe; }
+.bg-shape.hexagon.turquoise::after { border-top: 12px solid #00f2fe; bottom: -12px; }
+
+.bg-shape.hexagon.red::before { border-bottom: 12px solid #ff3344; top: -12px; }
+.bg-shape.hexagon.red { background-color: #ff3344; }
+.bg-shape.hexagon.red::after { border-top: 12px solid #ff3344; bottom: -12px; }
+
+.bg-shape.hexagon.cyber-black::before { border-bottom: 12px solid #252538; top: -12px; }
+.bg-shape.hexagon.cyber-black { background-color: #252538; }
+.bg-shape.hexagon.cyber-black::after { border-top: 12px solid #252538; bottom: -12px; }
+
+@keyframes floatHorizontal {
+    0% { transform: translateX(-10vw) rotate(0deg); }
+    50% { margin-top: 15px; }
+    100% { transform: translateX(110vw) rotate(360deg); }
+}
+
+/* ==========================================================================
+   🎤 HERO HEADER & CONTAINER GRID
+   ========================================================================== */
+.timeline-hero {
+    text-align: center;
+    padding: 120px 20px;
+    background: linear-gradient(180deg, rgba(0, 242, 254, 0.15), transparent);
+}
+
+.timeline-hero h1 {
+    font-size: 3.5rem;
+    margin: 0;
+    letter-spacing: 4px;
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+}
+
+.timeline-hero p {
+    color: #00adb5;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px 60px 20px; 
+}
+
+/* 🎯 Central Spine Components */
+.timeline-svg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 100%;
+    z-index: 2;
+}
+
+#svgPath {
+    stroke: #00f2fe; 
+    stroke-width: 6px;
+    fill: none;
+    stroke-linecap: round;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: rgba(34, 34, 53, 0.8);
+    transform: translateX(-50%);
+    z-index: 1;
+    border-radius: 3px;
+}
+
+/* ==========================================================================
+   🕒 TIMELINE CARDS FRAMEWORK (Desktop View)
+   ========================================================================== */
+.timeline-item {
+    position: relative;
+    width: 50%;
+    margin-bottom: 240px; 
+    box-sizing: border-box;
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease-out;
+    z-index: 3;
+}
+
+/* Anchors the Snow Miku node right at the starting tip of the path line */
+.timeline-item:first-of-type {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+.timeline-item:first-of-type .timeline-marker {
+    top: 0px;
+}
+
+.timeline-item.left-align {
+    left: 0;
+    padding-right: 45px;
+    transform: translateX(-50px);
+}
+
+.timeline-item.right-align {
+    left: 50%;
+    padding-left: 45px;
+    transform: translateX(50px);
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 🟢 Central Node Indicators */
+.timeline-marker {
+    position: absolute;
+    top: 30px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #0a0a10;
+    border: 3px solid #222235;
+    z-index: 4;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.timeline-item.left-align .timeline-marker { right: -11px; }
+.timeline-item.right-align .timeline-marker { left: -11px; }
+
+.timeline-item.visible .timeline-marker {
+    border-color: #00f2fe;
+    box-shadow: 0 0 10px #00f2fe;
+}
+
+/* 🏢 Card UI Box Styling */
+.timeline-content {
+    background: rgba(20, 20, 35, 0.7);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #222235;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+    backdrop-filter: blur(8px);
+    position: relative;
+    text-align: center;
+}
+
+/* 🖼️ Integrated Centered Gallery Images */
+.timeline-bubble-wrap {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 90%; 
+    max-width: 320px;
+    height: auto;
+    margin: 0 auto 20px auto; 
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #00f2fe;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    z-index: 5;
+    
+    opacity: 0;
+    transform: scale(0.8);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+}
+
+.timeline-item.visible .timeline-bubble-wrap {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.timeline-popout-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 📝 Typography */
+.event-date {
+    color: #00f2fe;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.timeline-content h3 {
+    margin: 10px 0;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.timeline-content p {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   📱 4. UNIVERSAL MOBILE MEDIA QUERY
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .timeline-svg, .timeline-line {
+        left: 30px;
+        transform: none;
+    }
+
+    .timeline-item {
+        width: 100%;
+        margin-bottom: 80px;
+    }
+
+    .timeline-item:first-of-type .timeline-marker {
+        top: 0px;
+    }
+
+    .timeline-item.left-align,
+    .timeline-item.right-align {
+        left: 0;
+        padding-left: 60px;
+        padding-right: 20px;
+        text-align: center; 
+    }
+
+    .timeline-item.left-align { transform: translateX(-40px); }
+    .timeline-item.right-align { transform: translateX(-40px); }
+    .timeline-item.visible { transform: translateX(0); }
+
+    .timeline-item.left-align .timeline-marker,
+    .timeline-item.right-align .timeline-marker {
+        left: 22px;
+        right: auto;
+    }
+
+    .timeline-bubble-wrap {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 20px auto;
+    }
+}
